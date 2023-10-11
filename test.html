@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>ECharts Demo</title>
+  <!-- <style>
+    @font-face {
+      font-family: "CustomFont";
+      src: url("GothamBold.otf") format("opentype");
+    }
+  </style> -->
+  <script src="echarts.min.js"></script>
+</head>
+
+<body>
+  <div id="chart" style="width: 600px; height: 400px;"></div>
+
+  <script>
+    // 创建图表实例
+    var style = document.createElement('style');
+    document.head.appendChild(style);
+
+    // 定义 @font-face 规则，加载 OTF 字体资源
+    var fontFaceRule = '@font-face { ' +
+      'font-family: "CustomFont"; ' +
+      'src: url("GothamBold.otf") format("opentype"); ' +
+      '}';
+
+    // 将 @font-face 规则添加到 <style> 元素中
+    style.sheet.insertRule(fontFaceRule, 0);
+
+    // 在需要应用自定义字体的元素中使用该字体
+    var element = document.getElementById('chart');
+    element.style.fontFamily = 'CustomFont';
+    var chart = echarts.init(element);
+
+    // 配置图表选项和数据
+    var options = {
+      tooltip: {
+        trigger: 'item'
+      },
+      legend: {
+        top: '5%',
+        left: 'center'
+      },
+      series: [
+        {
+          name: 'Access From',
+          type: 'pie',
+          radius: ['40%', '70%'],
+          avoidLabelOverlap: false,
+          itemStyle: {
+            borderRadius: 10,
+            borderColor: '#fff',
+            borderWidth: 2
+          },
+          label: {
+            show: true,
+            fontFamily: "CustomFont",
+            position: 'center'
+          },
+          emphasis: {
+            label: {
+              show: true,
+              fontSize: 40,
+              fontWeight: 'bold'
+            }
+          },
+          labelLine: {
+            show: false
+          },
+          data: [
+            { value: 1048, name: 'Search Engine' },
+            { value: 735, name: 'Direct' },
+            { value: 580, name: 'Email' },
+            { value: 484, name: 'Union Ads' },
+            { value: 300, name: 'Video Ads' }
+          ]
+        }
+      ]
+    };
+
+    // 渲染图表
+    chart.setOption(options);
+  </script>
+</body>
+
+</html>
